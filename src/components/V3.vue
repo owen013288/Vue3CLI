@@ -22,7 +22,11 @@
       <br /><br /><br />
       <input type="text" v-fbind:value="n" />
     </div>
-    <h2>生命週期</h2>
+    <h2>生命週期(了解就好))</h2>
+    <hr />
+    <h2>ref教學 避免用id</h2>
+    <h3 v-text="msg" ref="title"></h3>
+    <button @click="showDOM">點我輸出上方的DOM元素</button>
   </div>
 </template>
 
@@ -38,6 +42,7 @@ export default {
       name: "測試v-cloak",
       n: 1,
       notshow: false,
+      msg: "歡迎學習Vue",
     };
   },
   computed: {
@@ -48,6 +53,9 @@ export default {
   methods: {
     timeFormater(time) {
       return moment(time).format("YYYY-MM-DD HH:mm:ss");
+    },
+    showDOM() {
+      console.log(this.$refs.title);
     },
   },
   directives: {

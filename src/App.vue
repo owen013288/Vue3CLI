@@ -1,116 +1,38 @@
 <template>
-  <div class="todo-container">
-    <div class="todo-wrap">
-      <MyHeader :addTodo="addTodo" />
-      <MyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo" />
-      <MyFooter
-        :todos="todos"
-        :checkAllTodo="checkAllTodo"
-        :clearAllTodo="clearAllTodo"
-      />
-    </div>
+  <div class="demo">
+    <h1>{{ msg }}</h1>
+    <son-1 />
+    <son-2 v-on:xxx="demo" />
   </div>
 </template>
 
 <script>
 // 引入組件
-import MyHeader from "./components/TODOLIST/MyHeader.vue";
-import MyList from "./components/TODOLIST/MyList.vue";
-import MyFooter from "./components/TODOLIST/MyFooter.vue";
+import son1 from "./components/傳值教學/son1.vue";
+import son2 from "./components/傳值教學/son2.vue";
+
 export default {
   name: "App",
   data() {
     return {
-      todos: JSON.parse(localStorage.getItem("todos")) || [],
+      msg: "您好啊！",
     };
   },
   components: {
-    MyHeader,
-    MyFooter,
-    MyList,
+    son1,
+    son2,
   },
   methods: {
-    //添加一個todo
-    addTodo(todoObj) {
-      this.todos.unshift(todoObj);
-    },
-    //勾選或取消勾選一個todo
-    checkTodo(id) {
-      this.todos.forEach((todo) => {
-        if (todo.id === id) todo.done = !todo.done;
-      });
-    },
-    //刪除一個todo
-    deleteTodo(id) {
-      this.todos = this.todos.filter((todo) => {
-        return todo.id !== id;
-      });
-    },
-    //全選或全不選
-    checkAllTodo(done) {
-      this.todos.forEach((todoObj) => {
-        todoObj.done = done;
-      });
-    },
-    //清除所有已經完成的Todo
-    clearAllTodo() {
-      this.todos = this.todos.filter((todo) => {
-        return !todo.done;
-      });
-    },
-  },
-  watch: {
-    todos: {
-      deep: true,
-      handler(value) {
-        localStorage.setItem("todos", JSON.stringify(value));
-      },
+    demo(value) {
+      this.msg = value;
     },
   },
 };
 </script>
 
 <style>
-body {
-  background: #fff;
-}
-
-.btn {
-  display: inline-block;
-  padding: 4px 12px;
-  margin-bottom: 0;
-  font-size: 14px;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 1px 2px rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
-}
-
-.btn-danger {
-  color: #fff;
-  background-color: #da4f49;
-  border: 1px solid #bd362f;
-}
-
-.btn-danger:hover {
-  color: #fff;
-  background-color: #bd362f;
-}
-
-.btn:focus {
-  outline: none;
-}
-
-.todo-container {
-  width: 600px;
-  margin: 0 auto;
-}
-
-.todo-container .todo-wrap {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+.demo {
+  padding: 5px;
+  background-color: gray;
 }
 </style>

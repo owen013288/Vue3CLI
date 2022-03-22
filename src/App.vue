@@ -14,6 +14,7 @@
 
 <script>
 // 引入組件
+import pubsub from "pubsub-js";
 import MyHeader from "./components/TODOLIST/MyHeader.vue";
 import MyList from "./components/TODOLIST/MyList.vue";
 import MyFooter from "./components/TODOLIST/MyFooter.vue";
@@ -22,6 +23,7 @@ export default {
   data() {
     return {
       todos: JSON.parse(localStorage.getItem("todos")) || [],
+      pubId: "",
     };
   },
   components: {
@@ -69,11 +71,17 @@ export default {
   },
   mounted() {
     this.eventBus.on("checkTodo", this.checkTodo);
-    this.eventBus.on("deleteTodo", this.deleteTodo);
+    // this.eventBus.on("deleteTodo", this.deleteTodo);
+    this.pubId = pubsub.subscribe("deleteTodo", (_, id) => {
+      this.todos = this.todos.filter((todo) => {
+        return todo.id !== id;
+      });
+    });
   },
   beforeUnmount() {
     this.eventBus.off("checkTodo");
-    this.eventBus.off("deleteTodo");
+    // this.eventBus.off("deleteTodo");
+    pubsub.unsubscribe(this.pubId);
   },
 };
 </script>

@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import pubsub from "pubsub-js";
 export default {
   name: "MyItem",
   //聲明接收todo對象
@@ -23,7 +24,8 @@ export default {
     },
     handleDelete(id) {
       if (confirm("確定刪除嗎？")) {
-        this.eventBus.emit("deleteTodo", id);
+        // this.eventBus.emit("deleteTodo", id);
+        pubsub.publish("deleteTodo", id);
       }
     },
   },

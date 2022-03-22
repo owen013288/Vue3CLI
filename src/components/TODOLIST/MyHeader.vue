@@ -29,12 +29,11 @@ export default {
         done: false,
       };
       //通知APP組件添加數據
-      this.addTodo(todoObj);
+      this.$emit("addTodo", todoObj);
       //清空輸入
       this.title = "";
     },
   },
-  props: ["addTodo"],
 };
 </script>
 

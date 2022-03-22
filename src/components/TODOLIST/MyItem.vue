@@ -16,14 +16,14 @@
 export default {
   name: "MyItem",
   //聲明接收todo對象
-  props: ["todo", "checkTodo", "deleteTodo"],
+  props: ["todo"],
   methods: {
     handleCheck(id) {
-      this.checkTodo(id);
+      this.eventBus.emit("checkTodo", id);
     },
     handleDelete(id) {
       if (confirm("確定刪除嗎？")) {
-        this.deleteTodo(id);
+        this.eventBus.emit("deleteTodo", id);
       }
     },
   },

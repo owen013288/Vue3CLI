@@ -42,6 +42,11 @@ export default {
         if (todo.id === id) todo.done = !todo.done;
       });
     },
+    updateTodo(obj) {
+      this.todos.forEach((todo) => {
+        if (todo.id === obj.id) todo.title = obj.value;
+      });
+    },
     //刪除一個todo
     deleteTodo(id) {
       this.todos = this.todos.filter((todo) => {
@@ -71,6 +76,7 @@ export default {
   },
   mounted() {
     this.eventBus.on("checkTodo", this.checkTodo);
+    this.eventBus.on("updateTodo", this.updateTodo);
     // this.eventBus.on("deleteTodo", this.deleteTodo);
     this.pubId = pubsub.subscribe("deleteTodo", (_, id) => {
       this.todos = this.todos.filter((todo) => {
@@ -80,6 +86,7 @@ export default {
   },
   beforeUnmount() {
     this.eventBus.off("checkTodo");
+    this.eventBus.off("updateTodo");
     // this.eventBus.off("deleteTodo");
     pubsub.unsubscribe(this.pubId);
   },
@@ -108,6 +115,13 @@ body {
   color: #fff;
   background-color: #da4f49;
   border: 1px solid #bd362f;
+}
+
+.btn-edit {
+  color: #fff;
+  background-color: skyblue;
+  border: 1px solid rgb(103, 115, 180);
+  margin-right: 5px;
 }
 
 .btn-danger:hover {

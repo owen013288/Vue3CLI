@@ -6,9 +6,24 @@
         :checked="todo.done"
         @change="handleCheck(todo.id)"
       />
-      <span>{{ todo.title }}</span>
+      <span v-show="!todo.isEdit">{{ todo.title }}</span>
+      <input
+        type="text"
+        v-show="todo.isEdit"
+        :value="todo.title"
+        @blur="handleBlur(todo, $event)"
+        @keyup.enter="handleBlur(todo, $event)"
+        ref="inputTitle"
+      />
     </label>
     <button class="btn btn-danger" @click="handleDelete(todo.id)">刪除</button>
+    <button
+      v-show="!todo.isEdit"
+      class="btn btn-edit"
+      @click="handleEdit(todo)"
+    >
+      編輯
+    </button>
   </li>
 </template>
 
@@ -27,6 +42,26 @@ export default {
         // this.eventBus.emit("deleteTodo", id);
         pubsub.publish("deleteTodo", id);
       }
+    },
+    handleEdit(todo) {
+      // vue2作法
+      // this.$set(todo, 'isEdit', true);
+      // vue3作法 https://stackoverflow.com/questions/69780482/how-do-i-do-vue-set-in-vue-3
+      if (todo.hasOwnProperty("isEdit")) {
+        todo.isEdit = true;
+      } else {
+        todo["isEdit"] = true;
+      }
+      //等到下一次DOM完成後，才觸發
+      this.$nextTick(function () {
+        this.$refs.inputTitle.focus();
+      });
+    },
+    handleBlur(todo, e) {
+      todo.isEdit = false;
+      if (e.target.value.trim() === "") return;
+      // vue3 好像只能傳一個參數，於是就用object的方式傳遞
+      this.eventBus.emit("updateTodo", { id: todo.id, value: e.target.value });
     },
   },
 };

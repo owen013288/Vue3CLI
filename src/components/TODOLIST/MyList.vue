@@ -1,12 +1,20 @@
 <template>
   <ul class="todo-main">
-    <MyItem v-for="todoObj in todos" :key="todoObj.id" :todo="todoObj">
-    </MyItem>
+    <transition-group
+      appear
+      name="animate__animated animate__bounce"
+      enter-active-class="animate__backInDown"
+      leave-active-class="animate__fadeOut"
+    >
+      <MyItem v-for="todoObj in todos" :key="todoObj.id" :todo="todoObj">
+      </MyItem>
+    </transition-group>
   </ul>
 </template>
 
 <script>
 import MyItem from "./MyItem";
+import "animate.css";
 export default {
   name: "MyList",
   components: {

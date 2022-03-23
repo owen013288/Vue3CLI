@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     getWeather() {
-      axios.get("http://localhost:8081/weatherforecast").then(
+      axios.get("http://localhost:8081/api/weatherforecast").then(
         (response) => {
           // response 響應對象，資料在response.data
           console.log("成功", response.data);

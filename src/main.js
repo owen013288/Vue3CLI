@@ -6,10 +6,13 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import mitt from "mitt";
+import BootstrapVue3 from 'bootstrap-vue-3'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 
 const eventBus = mitt();
 const app = createApp(App);
-console.log(eventBus);
+app.use(BootstrapVue3)
 // 把 mitt 加入 Vue 的全域 Property，讓任何一個元件都能使用
 app.config.globalProperties.eventBus = eventBus;
 app.mount("#app");

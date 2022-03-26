@@ -13,7 +13,7 @@
 
 <script>
 //引入一個混合
-import { mixin } from "../assets/js/mixin";
+import { mixin } from "../../assets/js/mixin";
 export default {
   //簡單接收
   //props: ["name", "age"],

@@ -17,6 +17,7 @@
     "moment": "^2.29.1",
     "pubsub-js": "^1.9.4",
     "vue": "^3.2.13",
+    "vue-router": "^4.0.0-beta.13",
     "vuex": "^4.0.0-alpha.1"
   },
   "devDependencies": {

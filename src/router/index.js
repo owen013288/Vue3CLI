@@ -24,6 +24,13 @@ export default createRouter({
                         {
                             path: "Detail",
                             component: () => import("../components/路由/pages/Detail.vue"),
+                            // props($route) {
+                            //     return { id: $route.query.id, title: $route.query.title };
+                            // }
+                            //高級寫法
+                            props({ query: { id, title } }) {
+                                return { id, title };
+                            }
                         }
                     ]
                 }

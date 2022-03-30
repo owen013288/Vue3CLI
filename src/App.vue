@@ -19,7 +19,7 @@
           <router-link
             class="list-group-item"
             active-class="active"
-            to="../components/路由/pages/About"
+            :to="{ path: '/about' }"
           >
             About
           </router-link>

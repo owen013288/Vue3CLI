@@ -9,6 +9,7 @@
 
         <!-- 跳轉路由並攜帶query參數，to的對象寫法 -->
         <router-link
+          replace
           :to="{
             path: '/Home/Message/Detail',
             query: {
@@ -21,6 +22,7 @@
         </router-link>
       </li>
     </ul>
+    <input type="text" />
     <router-view></router-view>
   </div>
 </template>

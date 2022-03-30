@@ -10,6 +10,7 @@
 
           <!-- 新作法 -->
           <router-link
+            :replace="true"
             class="list-group-item"
             active-class="active"
             to="../components/路由/pages/home"
@@ -17,6 +18,7 @@
             home
           </router-link>
           <router-link
+            replace
             class="list-group-item"
             active-class="active"
             :to="{ path: '/about' }"

@@ -4,6 +4,7 @@
     <ul class="nav">
       <li>
         <router-link
+          replace
           class="list-group-item"
           active-class="active"
           to="/Home/News"
@@ -13,6 +14,7 @@
       </li>
       <li>
         <router-link
+          replace
           class="list-group-item"
           active-class="active"
           to="/Home/Message"
@@ -21,7 +23,12 @@
         </router-link>
       </li>
     </ul>
-    <router-view></router-view>
+    <!-- 讓裡面的不被銷毀，沒輸入include就全部保存 -->
+    <router-view v-slot="{ Component }">
+      <keep-alive include="News">
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
   </div>
 </template>
 

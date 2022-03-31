@@ -49,7 +49,10 @@ const router = createRouter({
                             },
                             meta: {
                                 title: '詳情'
-                            }
+                            },
+                            // beforeEnter(to, from, next) {
+                            //     xxxx跟之前一樣
+                            // }
                         }
                     ]
                 }

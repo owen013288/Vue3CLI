@@ -36,7 +36,7 @@ export default {
     });
 
     function SayHello() {
-      alert(`我叫${name},今年${age}歲`);
+      alert(`我叫${person.name},今年${person.age}歲`);
     }
 
     function changeInfo() {

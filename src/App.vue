@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { ref, reactive, computed, watch } from "vue";
+import { ref, reactive, computed, watch, watchEffect } from "vue";
 export default {
   name: "App",
   setup() {
@@ -130,15 +130,24 @@ export default {
     // });
 
     //特殊情況
-    watch(
-      () => person.job,
-      (newValue, oldValue) => {
-        console.log("person.job變化了", newValue, oldValue);
-      },
-      { deep: true } //此處由於是監視reactive對象中的某個屬性，所以deep配置有效
-    );
+    // watch(
+    //   () => person.job,
+    //   (newValue, oldValue) => {
+    //     console.log("person.job變化了", newValue, oldValue);
+    //   },
+    //   { deep: true } //此處由於是監視reactive對象中的某個屬性，所以deep配置有效
+    // );
     //#endregion
 
+    //#region watchEffect
+    //watchEffect所指定的回調中用到的數據，只要發生變化，則直接重新執行回調
+    watchEffect(() => {
+      //配置了，所以sum與person.job.a.b.c改變都能監視到
+      const x1 = sum.value;
+      const x2 = person.job.a.b.c;
+      console.log("watchEffect");
+    });
+    //#endregion
     // 返回一個對象
     return {
       person,

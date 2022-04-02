@@ -8,10 +8,16 @@
   <h2>嗜好： {{ person.hobby }}</h2>
   <button @click="SayHello()">說話(Vue3)</button>
   <button @click="changeInfo()">修改內容(Vue3)</button>
+  <hr />
+  姓：<input type="text" v-model="person.firstName" />
+  <br />
+  名：<input type="text" v-model="person.lastName" />
+  <br />
+  全名：<input type="text" v-model="person.fullName" />
 </template>
 
 <script>
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
 export default {
   name: "App",
   setup() {
@@ -33,11 +39,30 @@ export default {
         },
       },
       hobby: ["抽菸", "喝酒", "吃飯"],
+      firstName: "張",
+      lastName: "三",
     });
 
     function SayHello() {
       alert(`我叫${person.name},今年${person.age}歲`);
     }
+
+    // 計算屬性-簡寫
+    // person.fullName = computed(() => {
+    //   return person.firstName + "-" + person.lastName;
+    // });
+
+    // 計算屬性-完整
+    person.fullName = computed({
+      get() {
+        return person.firstName + "-" + person.lastName;
+      },
+      set(val) {
+        const nameArr = val.split("-");
+        person.firstName = nameArr[0];
+        person.lastName = nameArr[1];
+      },
+    });
 
     function changeInfo() {
       person.name = "李四";

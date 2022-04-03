@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue3cli"]=self["webpackChunkvue3cli"]||[]).push([[148],{6148:function(n,u,e){e.r(u),e.d(u,{default:function(){return s}});var t=e(6252);const r=(0,t._)("h2",null,"我是About",-1),c=[r];function l(n,u,e,r,l,i){return(0,t.wg)(),(0,t.iD)("div",null,c)}var i={name:"About"},a=e(3744);const o=(0,a.Z)(i,[["render",l]]);var s=o}}]);
+//# sourceMappingURL=148.716d3c81.js.map

@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue3cli"]=self["webpackChunkvue3cli"]||[]).push([[297],{1297:function(l,e,n){n.r(e),n.d(e,{default:function(){return s}});var u=n(6252),i=n(3577);function t(l,e,n,t,r,c){return(0,u.wg)(),(0,u.iD)("ul",null,[(0,u._)("li",null,"消息編碼："+(0,i.zw)(n.id),1),(0,u._)("li",null,"消息標題："+(0,i.zw)(n.title),1)])}var r={name:"Detail",props:["id","title"]},c=n(3744);const a=(0,c.Z)(r,[["render",t]]);var s=a}}]);
+//# sourceMappingURL=297.11854e89.js.map
